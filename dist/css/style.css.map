@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "AAAA,AAAA,IAAI,CAAA;EACA,WAAW,EAAE,wBAAwB;CACxC",
     "sources": [
-        "../../style.scss"
+        "../../sass/style.scss"
     ],
     "names": [],
     "file": "style.css"
