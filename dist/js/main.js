@@ -9,6 +9,7 @@ const cocktails = [
         drinkware:"Cocktail Glass",
         category:"vodka",
         price:8,
+        categoryId:1,
     },
     {
         name:"Bloody Mary",
@@ -20,6 +21,7 @@ const cocktails = [
         drinkware:"Highball Glass",
         category:"vodka",
         price:5,
+        categoryId:1,
     },
     {
         name:"Blue Lagoon",
@@ -31,6 +33,7 @@ const cocktails = [
         drinkware:"Highball Glass or Cocktail Glass",
         category:"vodka",
         price:8,
+        categoryId:1,
     },
     {
         name:"Sex on the Beach",
@@ -42,39 +45,43 @@ const cocktails = [
         drinkware:"Highball Glass",
         category:"vodka",
         price:6,
+        categoryId:1,
     },
     {
         name:"Screwdriver",
         imgId:"screwdriver.jpg",
         mainAlcohol:"Vodka",
-        ingredients:": 1 3/4 oz (1 part) Vodka, 3 1/2 oz (2 parts) Orange juice.",
+        ingredients:":1 3/4 oz (1 part) Vodka, 3 1/2 oz (2 parts) Orange juice.",
         served:"On the rocks; poured over ice.",
         garnish:"Orange Slice",
         drinkware:"Highball Glass",
         category:"vodka",
         price:6,
+        categoryId:1,
     },
     {
         name:"White Russian",
         imgId:"white_russian.jpg",
         mainAlcohol:"Vodka",
-        ingredients:": 1 2/3 oz (5 parts) Vodka, 1 oz (3 parts) Fresh cream, 2/3 oz (2 parts) Coffee liqueur.",
+        ingredients:":1 2/3 oz (5 parts) Vodka, 1 oz (3 parts) Fresh cream, 2/3 oz (2 parts) Coffee liqueur.",
         served:"On the rocks; poured over ice.",
         garnish:"None",
         drinkware:"Old Fashioned glass",
         category:"vodka",
         price:7,
+        categoryId:1,
     },
     {
         name:"Gin & Tonic",
         imgId:"gin_and_tonic.jpg",
         mainAlcohol:"Gin",
-        ingredients:":  1 part to 3 parts gin (to taste), 3 parts tonic water.",
+        ingredients:":1 part to 3 parts gin (to taste), 3 parts tonic water.",
         served:" On the rocks; poured over ice.",
         garnish:"A slice or wedge of lime",
         drinkware:"Highball glass or Rocks glass",
         category:"gin",
         price:6,
+        categoryId:2,
     },
     
     {
@@ -87,6 +94,7 @@ const cocktails = [
         drinkware:"Cocktail glass",
         category:"gin",
         price:7,
+        categoryId:2,
     },
     
     {
@@ -94,11 +102,12 @@ const cocktails = [
         imgId:"tom_collins.jpg",
         mainAlcohol:"Gin",
         ingredients:":1 1/2 oz (3 parts) Old Tom Gin, 1 oz (2 parts) Freshly squeezed lemon juice, 1/2 oz (1 part) sugar syrup, 2 oz (4 parts) carbonated water.",
-        served:" On the rocks; poured over ice.",
+        served:"On the rocks; poured over ice.",
         garnish:"Lemon slice, Maraschino cherry",
         drinkware:"Collins glass",
         category:"gin",
         price:8,
+        categoryId:2,
     },
     
     {
@@ -106,11 +115,12 @@ const cocktails = [
         imgId:"Negroni.jpg",
         mainAlcohol:"Gin",
         ingredients:":1 oz (1 part) Campari, 1 oz (1 part) Gin, 1 oz (1 part) Sweet red Vermouth.",
-        served:" On the rocks; poured over ice.",
+        served:"On the rocks; poured over ice.",
         garnish:"Orange peel",
         drinkware:"Old Fashioned glass",
         category:"gin",
         price:8,
+        categoryId:2,
     },
     
     {
@@ -123,6 +133,7 @@ const cocktails = [
         drinkware:"Cocktail glass",
         category:"gin",
         price:6,
+        categoryId:2,
     },
     
     {
@@ -135,6 +146,7 @@ const cocktails = [
         drinkware:"Cocktail glass",
         category:"gin",
         price:6,
+        categoryId:2,
     },
     {
         name:"Tequila Sunrise",
@@ -146,6 +158,7 @@ const cocktails = [
         drinkware:"Collins glass",
         category:"tequila",
         price:8,
+        categoryId:3,
     },
     {
         name:"Paloma",
@@ -157,6 +170,7 @@ const cocktails = [
         drinkware:"Highball glass",
         category:"tequila",
         price:7,
+        categoryId:3,
     },
     {
         name:"Margarita",
@@ -168,6 +182,7 @@ const cocktails = [
         drinkware:"Margarita glass",
         category:"tequila",
         price:6,
+        categoryId:3,
     },
     {
         name:"Tequila Slammer",
@@ -179,10 +194,11 @@ const cocktails = [
         drinkware:"Rocks glass",
         category:"tequila",
         price:6,
+        categoryId:3,
     },
     {
         name:"Long Island Iced Tea",
-        imgId:"long_island_iced_tea",
+        imgId:"long_island_iced_tea.jpg",
         mainAlcohol:"Tequila",
         ingredients:"1 oz Gomme Syrup, 1 oz Lemon juice, 1/2 oz Tequila, 1/2 oz Gin, 1/2 oz Triple sec, 1/2 oz Vodka, 1/2 oz White rum, splash of cola.",
         served:"On the rocks; poured over ice.",
@@ -190,6 +206,7 @@ const cocktails = [
         drinkware:"Highball glass",
         category:"tequila",
         price:7,
+        categoryId:3,
     },
     {
         name:"Matador",
@@ -201,6 +218,7 @@ const cocktails = [
         drinkware:"Champagne flute, Cocktail glasss",
         category:"tequila",
         price:5,
+        categoryId:3,
     },
     
     
@@ -222,7 +240,10 @@ const categories = [
 
 function init(){
     displayCocktails(cocktails);
+
     displayCategories(categories);
+    
+    addFilterListener();
 };
 
 function displayCocktails(cocktailArray){
@@ -245,11 +266,31 @@ function displayCocktails(cocktailArray){
 function displayCategories(categoriesArray){
     let html = ``;
     for( const category of categoriesArray){
-        html += `<li class="category" data-id${category.id}><h4>${category.title}</h4></li>`;
+        html += `<li class="category" data-id="${category.id}"><h4>${category.title}</h4></li>`;
     }; 
     $("#categories").html(html);
+    addCategoryClickListeners();
 
 }
 
+function addCategoryClickListeners(){
+    $('.category').click(function(){
+        const selectedCategory = $(this).data('id');
+        
+        const filteredCategories = cocktails.filter(function(cocktail){
+            return cocktail.categoryId === selectedCategory;
+        })
+        displayCategories(filteredCategories);
+    });
+};
 
+function addFilterListener(){
+    $("#search-input").keyup(function(){
+        const searchString = $("#search-input").val();
+        const filteredArray = cocktails.filter(function(cocktail){
+            return cocktail.name.toLowerCase().includes(searchString.toLowerCase())
+        });
+        displayCocktails(filteredArray);
+    });
+}
 init();
