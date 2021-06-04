@@ -10,6 +10,7 @@ const cocktails = [
         category:"vodka",
         price:8,
         categoryId:1,
+        itemId:'001',
     },
     {
         name:"Bloody Mary",
@@ -22,6 +23,7 @@ const cocktails = [
         category:"vodka",
         price:5,
         categoryId:1,
+        itemId:'002',
     },
     {
         name:"Blue Lagoon",
@@ -34,6 +36,7 @@ const cocktails = [
         category:"vodka",
         price:8,
         categoryId:1,
+        itemId:'003',
     },
     {
         name:"Sex on the Beach",
@@ -46,6 +49,7 @@ const cocktails = [
         category:"vodka",
         price:6,
         categoryId:1,
+        itemId:'004',
     },
     {
         name:"Screwdriver",
@@ -58,6 +62,7 @@ const cocktails = [
         category:"vodka",
         price:6,
         categoryId:1,
+        itemId:'005',
     },
     {
         name:"White Russian",
@@ -70,6 +75,7 @@ const cocktails = [
         category:"vodka",
         price:7,
         categoryId:1,
+        itemId:'006',
     },
     {
         name:"Gin & Tonic",
@@ -82,6 +88,7 @@ const cocktails = [
         category:"gin",
         price:6,
         categoryId:2,
+        itemId:'007',
     },
     
     {
@@ -95,6 +102,7 @@ const cocktails = [
         category:"gin",
         price:7,
         categoryId:2,
+        itemId:'008',
     },
     
     {
@@ -108,6 +116,7 @@ const cocktails = [
         category:"gin",
         price:8,
         categoryId:2,
+        itemId: '009',
     },
     
     {
@@ -121,6 +130,7 @@ const cocktails = [
         category:"gin",
         price:8,
         categoryId:2,
+        itemId:'010',
     },
     
     {
@@ -134,6 +144,7 @@ const cocktails = [
         category:"gin",
         price:6,
         categoryId:2,
+        itemId:'011',
     },
     
     {
@@ -147,6 +158,7 @@ const cocktails = [
         category:"gin",
         price:6,
         categoryId:2,
+        itemId:'012',
     },
     {
         name:"Tequila Sunrise",
@@ -159,6 +171,7 @@ const cocktails = [
         category:"tequila",
         price:8,
         categoryId:3,
+        itemId:'013',
     },
     {
         name:"Paloma",
@@ -171,6 +184,7 @@ const cocktails = [
         category:"tequila",
         price:7,
         categoryId:3,
+        itemId:'014',
     },
     {
         name:"Margarita",
@@ -183,6 +197,7 @@ const cocktails = [
         category:"tequila",
         price:6,
         categoryId:3,
+        itemId:'015',
     },
     {
         name:"Tequila Slammer",
@@ -195,6 +210,7 @@ const cocktails = [
         category:"tequila",
         price:6,
         categoryId:3,
+        itemId:'016',
     },
     {
         name:"Long Island Iced Tea",
@@ -207,6 +223,7 @@ const cocktails = [
         category:"tequila",
         price:7,
         categoryId:3,
+        itemId:'017',
     },
     {
         name:"Matador",
@@ -219,10 +236,10 @@ const cocktails = [
         category:"tequila",
         price:5,
         categoryId:3,
-    },
-    
-    
+        itemId:'018',
+    }
 ];
+
 const categories = [
     // {
     //     id: 0, 
@@ -242,6 +259,9 @@ const categories = [
     },
 ]
 
+let cart =[]
+
+
 function init(){
     initScreens();
 
@@ -250,14 +270,18 @@ function init(){
     displayCocktails(cocktails);
 
     displayCategories(categories);
+
+    // addThumbnailClickListeners();
     
     addFilterListener();
+
+    initItemPopUp();
 };
 
 function displayCocktails(cocktailArray){
-    let html = ``;
+    let html = ``
     for (const cocktail of cocktailArray){
-        html += `<div class ="cocktail-thumbnail">
+        html += `<div class="thumbnail" data-id=${cocktail.itemId}>
             <img src="../assets/imgDrinks/cropped_${cocktail.imgId}" alt="${cocktail.name} Cocktail">
             <div>
                 <span>
@@ -266,14 +290,13 @@ function displayCocktails(cocktailArray){
                 </span>
                 <h5>$${cocktail.price}</h5>
             </div>
-        </div>`;    
+        </div>`
     }
     $('.cocktails').html(html);
-    // addThumbnailClickListeners();
+    addThumbnailClickListeners();
 };
 
 function displayCategories(categoriesArray){
-    console.log(categoriesArray)
     let html = ``;
     for( const category of categoriesArray){
         html += `<li class="category" data-id="${category.id}"><h4>${category.title}</h4></li>`;
@@ -298,29 +321,85 @@ function addCategoryClickListeners(){
 };
 
 
-function addThumbnailClickListeners(){
-    $('.cocktail-thumbnail').click(function(){
-        const cocktailId = $(this).data('id');
-        openItemDetail();
-    })
-};
+function initItemPopUp(){
+    let html = ``
+    html =`<div id="item-details">
+    <img src="../assets/imgDrinks/cosmopolitan.jpg">
+    <div>
+        <p>Main Alcohol <span>${$(this).mainAlcohol}</span></p>
+        <p>Ingredients: <span>${$(this).ingredients}</span></p>
+        <p>Served: <span>${$(this).served}</span></p>
+        <p>Standard Garnish: <span>${$(this).garnish}</span></p>
+        <p>Drinkware: <span>${$(this).drinkware}</span></p>
+    </div>
+    <div>
+        <div>
+            <p>x10</p>
+            <button>Add</button>
+        </div>
+        <div>
+            <p>x50</p>
+            <button>Add</button>
+        </div>
+        <div>
+            <p>x100</p>
+            <button>Add</button>
+        </div>
+        <div>
+            <p>x150</p>
+            <button>Add</button>
+        </div>
+        <div>
+            <p>x500</p>
+            <button>Add</button>
+        </div>
+    </div>
+</div>`
+    
+    $('.item-pop-up').html(html);
+    $('.item-pop-up').hide();
+}
+function showItemDetail(){
+    $('.item-pop-up').show();
 
-function openItemDetail(){
-    $('#item-details').show();
 }
 
-function initItemDetails(){
-    $('#item-details').hide();
-    // $('#item-details').click(function(){
-    //     $(this).hide()
-    //     $('#item-details img').attr('src', '');
+function addThumbnailClickListeners(){
+    $('.thumbnail').click(function(){
+       singleItemId = $(this).data();
+       console.log(singleItemId)
+    })
+}
 
-    // });
+
+// function addThumbnailClickListeners(){
+//     $(".thumbnail").click( function(){
+//       const itemId = $(this).data("id");
+//       openItemDetail(itemId);
+//     })
+//     };
+
+// function openItemDetail(id){
+//     let singleImgId = "../assets/imgDrinks/" + id
+
+//     $('#item-details img').attr("src", singleImgId);
+//     $('.item-pop-up').show();
+// }
+
+function initItemDetails(){
+    $('#item-pop-up').hide();
+    $('#item-pop-up').click(function(){
+        $(this).hide()
+        $('#item-details img').attr('src', '');
+
+    });
 }
 
 function addFilterListener(){
     $("#search-input").keyup(function(){
+        
         const searchString = $("#search-input").val();
+
         const filteredArray = cocktails.filter(function(cocktail){
             return cocktail.name.toLowerCase().includes(searchString.toLowerCase())
         });
