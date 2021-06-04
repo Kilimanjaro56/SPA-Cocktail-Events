@@ -19,7 +19,7 @@
         </ul>
     </header>
     <section id="order" class="view">
-        .
+        
         <div class="details-section">
             <h1>The Details.</h1>
             <form>
@@ -34,15 +34,46 @@
         <div class="cocktails-section">
             <h1>Pick Your Cocktails.</h1>
             <div id="filtering">
-                <ul id=categories>
-                </ul>
+                <ul id=all-category><li class="category" data-id="0"><h4>All</h4></li></ul>
+                <ul id=categories></ul>
                 <div id="search-bar">
                     <label for="search-input">Search</label>
                     <input type="text" name="search-input" id="search-input">
                 </div>
             </div>
             <div class="cocktails"></div>
-            <div id="item-details"></div>
+            <div id="item-details">
+                <img src="../assets/imgDrinks/cosmopolitan.jpg">
+                <div>
+                    <p>Main Alcohol <span></span></p>
+                    <p>Ingredients: <span></span></p>
+                    <p>Served: <span></span></p>
+                    <p>Standard Garnish: <span></span></p>
+                    <p>Drinkware: <span></span></p>
+                </div>
+                <div>
+                    <div>
+                        <p>x10</p>
+                        <button>Add</button>
+                    </div>
+                    <div>
+                        <p>x50</p>
+                        <button>Add</button>
+                    </div>
+                    <div>
+                        <p>x100</p>
+                        <button>Add</button>
+                    </div>
+                    <div>
+                        <p>x150</p>
+                        <button>Add</button>
+                    </div>
+                    <div>
+                        <p>x500</p>
+                        <button>Add</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="order-section">
             <h1>Order.</h1>
@@ -54,12 +85,39 @@
             
         </section>
         <section id="about" class="view">
-            
+            <div id="about-us">
+                <h3>About Us</h3>
+                <p>We love to mix elegance with that cozy home-town feeling. Evident in our drinks which are styled to fit your event perfectly, we don’t sacrifice the quality of the drinks for the quantity! </p>
+                <p>Based in Christchurch NZ we currently aren’t offering mixologists for hire but we are looking to expand so keep an eye out!</p>
+            </div>
+            <div id="faqs">
+                <h3> FAQs</h3>
+                <h5 class="faq-questions"></h5>
+                <p>-Currently we are working on an online store to make everything easier for you. For the moment we have this online menu of sorts, it will give you a quote. Then you can call or email us to place the order.</p>
+                <p> Phone: 027 123 1234 <br>
+                    Email: example@gmail.com</p>
+                    <h5 class="faq-questions">What happens next?</h5>
+                    <p>-Once your order is places we will send you order and tracking information. This will contain everything you need to know!</p>
+                    <h5 class="faq-questions">When should I order?</h5>
+                    <p>- For events less than 5,000 cocktails we recommend ordering at least 15 days in advance to ensure we can get you the cocktails you want. </p>
+                    <h5 class="faq-questions">Is there a limit?</h5>
+                    <p>-We have a minimum order of 50 cocktails. There isn’t any maximum order, however for orders of more than 5,000 we recommend ordering at least 36 days in advance to ensure we can get you the cocktails you want. </p>
+                    <h5 class="faq-questions">Any more questions?</h5>
+                    <p>-Feel free to contact us: <br>
+                        10-4pm Every Weekday <br>
+                        12-3pm Saturday and Sunday</p>
+                    <p> Phone: 027 123 1234 <br>
+                        Email: example@gmail.com</p>
+                    
+            </div>
+        </section>
+        <section>
+
         </section>
         <footer>
             <ul>
-                <li><a>Order</a></li>
-                <li><a>About</a></li>
+                <li><a class="nav-link" data-view="order">Order</a></li>
+                <li><a class="nav-link" data-view="about">About</a></li>
             </ul>
         </footer>
     </body>

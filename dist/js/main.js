@@ -224,6 +224,10 @@ const cocktails = [
     
 ];
 const categories = [
+    // {
+    //     id: 0, 
+    //     title: "Popular", 
+    // },
     {
         id: 1, 
         title: "Vodka", 
@@ -239,6 +243,10 @@ const categories = [
 ]
 
 function init(){
+    initScreens();
+
+    initItemDetails();
+
     displayCocktails(cocktails);
 
     displayCategories(categories);
@@ -261,9 +269,11 @@ function displayCocktails(cocktailArray){
         </div>`;    
     }
     $('.cocktails').html(html);
+    // addThumbnailClickListeners();
 };
 
 function displayCategories(categoriesArray){
+    console.log(categoriesArray)
     let html = ``;
     for( const category of categoriesArray){
         html += `<li class="category" data-id="${category.id}"><h4>${category.title}</h4></li>`;
@@ -279,10 +289,34 @@ function addCategoryClickListeners(){
         
         const filteredCategories = cocktails.filter(function(cocktail){
             return cocktail.categoryId === selectedCategory;
-        })
-        displayCategories(filteredCategories);
+        });
+        displayCocktails(filteredCategories);
+
     });
+
+    $('#all-category').click(function(){displayCocktails(cocktails)})
 };
+
+
+function addThumbnailClickListeners(){
+    $('.cocktail-thumbnail').click(function(){
+        const cocktailId = $(this).data('id');
+        openItemDetail();
+    })
+};
+
+function openItemDetail(){
+    $('#item-details').show();
+}
+
+function initItemDetails(){
+    $('#item-details').hide();
+    // $('#item-details').click(function(){
+    //     $(this).hide()
+    //     $('#item-details img').attr('src', '');
+
+    // });
+}
 
 function addFilterListener(){
     $("#search-input").keyup(function(){
@@ -293,4 +327,20 @@ function addFilterListener(){
         displayCocktails(filteredArray);
     });
 }
+
+function initScreens(){
+    $('.view').slice(1).hide();
+    $('.nav-link').click(changeScreen);
+};
+
+function changeScreen(){
+    $('.view').hide();
+    let view = $(this).data('view');
+    $('#' + view).show();
+}
+
 init();
+
+// let obj = {
+//     hello: "hello"
+// }
