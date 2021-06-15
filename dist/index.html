@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script defer src="js/main.js"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -15,10 +16,19 @@
     <header>
         <ul>
             <li><a class="nav-link" data-view="order">Order</a></li>
+            <img src="/assets/logo.png" alt="">
             <li><a class="nav-link" data-view="about">About</a></li>
         </ul>
     </header>
+
+   <div class="add-border"><button class="cart-button"><i class="fas fa-shopping-bag"></i></button> </div>
+    
+
+    
     <section id="order" class="view">
+        <div id="heroImg">
+            <img src="/assets/hero-02.png">
+        </div>
         
         <div class="details-section">
             <h1>The Details.</h1>
@@ -43,19 +53,12 @@
             </div>
             <div class="cocktails"></div>
             <div id="item-modal">
+                <button id="modal-close">X</button>
                 <div id="item-details">
-                    <img src="../assets/imgDrinks/cosmopolitan.jpg">
-                <div id="content"></div>
-                <div>
-                    <div><p>x10</p><button>Add</button></div>
-                    <div><p>x50</p><button>Add</button> </div>
-                    <div><p>x100</p><button>Add</button> </div>
-                    <div><p>x150</p><button>Add</button> </div>
-                    <div><p>x500</p><button>Add</button> </div>
+                    
                 </div>
             </div>
-        </div>
-        <div class="order-section">
+        <div id="order-section">
             <h1>Order.</h1>
             <h5>How Do I Order?</h5>
             <p>-Currently we are working on an online store to make everything easier for you. For the moment we have this online menu of sorts, it will give you a quote and a reference number. Then you can call or email us to place the order and pay.</p>
@@ -64,41 +67,65 @@
             </div>
             
         </section>
-        <section id="about" class="view">
-            <div id="about-us">
-                <h3>About Us</h3>
-                <p>We love to mix elegance with that cozy home-town feeling. Evident in our drinks which are styled to fit your event perfectly, we don’t sacrifice the quality of the drinks for the quantity! </p>
-                <p>Based in Christchurch NZ we currently aren’t offering mixologists for hire but we are looking to expand so keep an eye out!</p>
-            </div>
-            <div id="faqs">
-                <h3> FAQs</h3>
-                <h5 class="faq-questions"></h5>
-                <p>-Currently we are working on an online store to make everything easier for you. For the moment we have this online menu of sorts, it will give you a quote. Then you can call or email us to place the order.</p>
-                <p> Phone: 027 123 1234 <br>
-                    Email: example@gmail.com</p>
-                    <h5 class="faq-questions">What happens next?</h5>
-                    <p>-Once your order is places we will send you order and tracking information. This will contain everything you need to know!</p>
-                    <h5 class="faq-questions">When should I order?</h5>
-                    <p>- For events less than 5,000 cocktails we recommend ordering at least 15 days in advance to ensure we can get you the cocktails you want. </p>
-                    <h5 class="faq-questions">Is there a limit?</h5>
-                    <p>-We have a minimum order of 50 cocktails. There isn’t any maximum order, however for orders of more than 5,000 we recommend ordering at least 36 days in advance to ensure we can get you the cocktails you want. </p>
-                    <h5 class="faq-questions">Any more questions?</h5>
-                    <p>-Feel free to contact us: <br>
-                        10-4pm Every Weekday <br>
-                        12-3pm Saturday and Sunday</p>
-                    <p> Phone: 027 123 1234 <br>
-                        Email: example@gmail.com</p>
-                    
-            </div>
-        </section>
-        <section>
 
-        </section>
-        <footer>
-            <ul>
-                <li><a class="nav-link" data-view="order">Order</a></li>
-                <li><a class="nav-link" data-view="about">About</a></li>
-            </ul>
-        </footer>
-    </body>
-    </html>
+            <section id="cart-section">
+                <div class="cart-content">
+                    <button id="close">X</button>
+                    <h2>Your Quote</h2>
+                    <div id="cart-headings">
+                        <h3>Cocktail</h3>
+                        <h3>Quantity</h3>
+                        <h3>Price</h3>
+                        <span></span>
+                    </div>
+                    <div class="cart-item">
+                    </div>
+                    <div id="cart-totals">
+                        <h6>Total:</h6>
+                        <h6><span id="cart-total-quantity"></span></h6>
+                        <h6><span id="cart-total-price"></span></h6>
+                        <button>Continue</button>
+                    </div>
+                </section>
+                <section id="about" class="view">
+                    <div id="about-us">
+                        <h1>About Us</h1>
+                        <p>We love to mix elegance with that cozy home-town feeling. Evident in our drinks which are styled to fit your event perfectly, we don’t sacrifice the quality of the drinks for the quantity! </p>
+                        <p>Based in Christchurch NZ we currently aren’t offering mixologists for hire but we are looking to expand so keep an eye out!</p>
+                    </div>
+                    <div id="faqs">
+                        <h1> FAQs</h1>
+                        <h5 class="faq-questions"></h5>
+                        <p>-Currently we are working on an online store to make everything easier for you. For the moment we have this online menu of sorts, it will give you a quote. Then you can call or email us to place the order.</p>
+                        <p> Phone: 027 123 1234 <br>
+                            Email: example@gmail.com</p>
+                            <h5 class="faq-questions">What happens next?</h5>
+                            <p>-Once your order is places we will send you order and tracking information. This will contain everything you need to know!</p>
+                            <h5 class="faq-questions">When should I order?</h5>
+                            <p>- For events less than 5,000 cocktails we recommend ordering at least 15 days in advance to ensure we can get you the cocktails you want. </p>
+                            <h5 class="faq-questions">Is there a limit?</h5>
+                            <p>-We have a minimum order of 50 cocktails. There isn’t any maximum order, however for orders of more than 5,000 we recommend ordering at least 36 days in advance to ensure we can get you the cocktails you want. </p>
+                            <h5 class="faq-questions">Any more questions?</h5>
+                            <p>-Feel free to contact us: <br>
+                                10-4pm Every Weekday <br>
+                                12-3pm Saturday and Sunday</p>
+                                <p> Phone: 027 123 1234 <br>
+                                    Email: example@gmail.com</p>
+                                    
+                                </div>
+                            </section>
+                            <section>
+                                
+                            </section>
+                            <footer>
+                                <ul>
+                                    <li><a class="nav-link" data-view="order">Order</a></li>
+                                    <li><a class="nav-link" data-view="about">About</a></li>
+                                </ul>
+                            </footer>
+                        </body>
+                        </html>
+                        
+                        
+                        
+                        
